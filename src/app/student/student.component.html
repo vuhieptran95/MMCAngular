@@ -1,0 +1,65 @@
+<table>
+  <thead>
+    <tr>
+      <!-- <td>STT</td> -->
+      <td>Họ tên</td>
+      <td>Trường</td>
+      <td>Info</td>
+    </tr>
+  </thead>
+  <tbody *ngFor="let student of students">
+    <tr>
+      <!-- <td>{{id++}}</td> -->
+      <td><a class="link-cursor" (click)="onSelectStudent(student)">{{student.lastName}} {{student.firstName}}</a></td>
+      <td><a class="link-cursor" (click)="onSelectStudent2(student)">{{student.school}}</a></td>
+      <!-- <td><a [routerLink]="['/detail/' + student.id]">Chi tiết</a></td> -->
+      <td><a class="link-cursor" (click)="onSelectDetailedStudent(student)">Chi tiết</a></td>
+    </tr>
+  </tbody>
+</table>
+
+<student-detail [student]="detailedStudent" (change)="onChangeStudentDetail($event)" ></student-detail>
+
+<div *ngIf="selectedStudent">
+  <h2>
+    <span class="link-cursor" style="margin-right: 20px" (click)="onClose()">Close</span>
+    Điểm của {{selectedStudent.firstName}}
+  </h2>
+
+  <table>
+    <thead>
+      <tr>
+        <!-- <td>STT</td> -->
+        <td>Ngày</td>
+        <td>Điểm</td>
+      </tr>
+    </thead>
+    <tbody *ngFor="let grade of selectedStudent.grades">
+      <tr>
+        <!-- <td>{{id++}}</td> -->
+        <td>{{grade.dateTime | date: 'dd/MM/yyyy'}} - {{util.ConvertDay(grade.dateTime | date: 'EEEE')}}</td>
+        <td>{{grade.mark}}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<div *ngIf="grades">
+    <span class="link-cursor" style="margin-right: 20px" (click)="onClose()">Close</span>
+    <table>
+      <thead>
+        <tr>
+          <!-- <td>STT</td> -->
+          <td>Ngày</td>
+          <td>Điểm</td>
+        </tr>
+      </thead>
+      <tbody *ngFor="let grade of grades">
+        <tr>
+          <!-- <td>{{id++}}</td> -->
+          <td>{{grade.dateTime | date: 'dd/MM/yyyy'}} - {{grade.dateTime | date: 'EEEE'}}</td>
+          <td>{{grade.mark}}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
