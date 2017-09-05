@@ -4,6 +4,7 @@ import { StudentService } from './services/student.service';
 import {HttpModule} from '@angular/http';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { FormsModule, ReactiveFormsModule }   from '@angular/forms';
 
 import { AppComponent } from './app.component';
 import { MainComponent } from './main/main.component';
@@ -22,7 +23,8 @@ import { StudentDetailComponent } from './student-detail/student-detail.componen
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpModule
+    HttpModule,
+    FormsModule
   ],
   providers: [StudentService, UtilService],
   bootstrap: [AppComponent]

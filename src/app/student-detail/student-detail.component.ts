@@ -14,8 +14,18 @@ export class StudentDetailComponent implements OnInit {
   constructor(private route: ActivatedRoute, private Location: Location, private studentService: StudentService) { }
   @Input() student: any;
   @Output() change = new EventEmitter();
-  onSave(student){
-    this.change.emit(student);
+  // onSave(student){
+  //   this.change.emit(student);
+  // }
+
+  submit(f, student){
+    console.log(f);
+    console.log(student);
+    
+  }
+
+  log(model){
+    console.log(model);
   }
 
   ngOnInit() {

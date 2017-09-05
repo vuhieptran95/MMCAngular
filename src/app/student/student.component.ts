@@ -37,6 +37,7 @@ export class StudentComponent implements OnInit {
     this.selectedStudent = null;
     this.grades = null;
   }
+  
 
   onChangeStudentDetail(student){
     console.log(student);

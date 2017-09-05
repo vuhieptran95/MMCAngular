@@ -1,9 +1,13 @@
 <section *ngIf="student">
-  <form>
+  <form #f="ngForm" (ngSubmit)="submit(f, student)">
     <div class="row uniform">
       <div class="6u 12u$(xsmall)">
         <!-- <label>Tên</label> -->
-        <input type="text" name="demo-name" id="demo-name" value={{student.lastName}} placeholder="Họ đệm" />
+        <input required minlength="3" [ngModel]="student.lastName" name="lastName" #lastName="ngModel" (change)="log(lastName)" type="text" id="lastName" value={{student.lastName}} placeholder="Họ đệm" />
+        <div *ngIf="lastName.touched && lastName.invalid">
+          <div *ngIf="lastName.errors.required">lastName is required</div>  
+          <div *ngIf="lastName.errors.minlength">minlength is 3</div>
+        </div>
       </div>
       <div class="6u$ 12u$(xsmall)">
         <input type="text" name="demo-name" id="demo-name" value={{student.firstName}} placeholder="Tên" />
@@ -19,7 +23,7 @@
       </div>
       <div class="12u$">
         <ul class="actions">
-          <li><a class="button special" (click)="onSave(student)">Lưu thông tin</a></li>
+          <li><button [disabled]="f.invalid" class="button special">Lưu thông tin</button></li>
         </ul>
       </div>
     </div>
